@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration status="DEBUG" monitorInterval="30">
+
+	<Properties>
+        <Property name="basePath">D:/Middlewarelog/WidgetMiddlewareLog</Property>
+        <Property name="basePath1">D:/Middlewarelog/POMReverseUpdateLog</Property>
+        <Property name="basePath2">D:/Middlewarelog/ACMSchdulerLog</Property>
+        <Property name="basePath3">D:/Middlewarelog/CRMPopupLog</Property>
+        <Property name="basePath4">D:/Middlewarelog/TCPCallTagLog</Property>
+        <Property name="basePath5">D:/Middlewarelog/POMMiddlewareLog</Property>
+        <Property name="size">500MB</Property>
+    </Properties>
+    
+	<Appenders>
+	
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+		</Console>
+		
+		<RollingFile name="RoutingAppender" append="false"
+			fileName="${basePath}/middlewarelog.log" filePattern="${basePath}/$${date:yyyy-MM}/middlewarelog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		
+		<RollingFile name="RoutingAppender1" append="false"
+			fileName="${basePath1}/pomreverselog.log" filePattern="${basePath1}/$${date:yyyy-MM}/pomreverselog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath1}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		
+		<RollingFile name="RoutingAppender2" append="false"
+			fileName="${basePath2}/acmschdulerlog.log" filePattern="${basePath2}/$${date:yyyy-MM}/acmschdulerlog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath2}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		
+		<RollingFile name="RoutingAppender3" append="false"
+			fileName="${basePath3}/crmpopuplog.log" filePattern="${basePath3}/$${date:yyyy-MM}/crmpopuplog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath3}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		
+		<RollingFile name="RoutingAppender4" append="false"
+			fileName="${basePath4}/tcpcalltaglog.log" filePattern="${basePath4}/$${date:yyyy-MM}/tcpcalltaglog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath4}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		<RollingFile name="RoutingAppender5" append="false"
+			fileName="${basePath5}/pommiddlewarelog.log" filePattern="${basePath5}/$${date:yyyy-MM}/pommiddlewarelog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath5}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		
+	</Appenders>
+	
+	<Loggers>	
+		<Logger name="Widget" level="debug" additivity="false">
+		    <Appender-Ref ref="RoutingAppender"/>			
+			<Appender-Ref ref="Console"/>			
+		</Logger>
+		<Logger name="PomReverse" level="debug" additivity="false">
+			<AppenderRef ref="RoutingAppender1" />
+			<AppenderRef ref="Console" />
+		</Logger>	
+		<Logger name="ACMSchduler" level="debug" additivity="false">
+			<AppenderRef ref="RoutingAppender2" />
+			<AppenderRef ref="Console" />
+		</Logger>	
+		<Logger name="CRMPopup" level="debug" additivity="false">
+			<AppenderRef ref="RoutingAppender3" />
+			<AppenderRef ref="Console" />
+		</Logger>	
+		<Logger name="TCPCallTag" level="debug" additivity="false">
+			<AppenderRef ref="RoutingAppender4" />
+			<AppenderRef ref="Console" />
+		</Logger>	
+		<Logger name="POM" level="debug" additivity="false">
+			<AppenderRef ref="RoutingAppender5" />
+			<AppenderRef ref="Console" />
+		</Logger>		
+		<Root level="error" additivity="false">
+			<AppenderRef ref="Console"/>			
+		</Root>
+	</Loggers>
+</Configuration>
